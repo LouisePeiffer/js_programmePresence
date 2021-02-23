@@ -1,65 +1,22 @@
 // // // Ciblage
-// let divStag = document.querySelector('#listStagiaires');
-// let listStag = document.querySelector('.listStag');
+let ajouter = document.querySelector('.ajouteStag')
+let modalBg = document.querySelector('.modalBg')
 
-// let inpKey = document.querySelector('#inpKey');
-// let inpValue = document.querySelector('#inpValue');
-// let ajouteStag = document.querySelector('.ajouteStag');
+ajouter.addEventListener('click', function () {
+    modalBg.classList.add('bg-active')
 
-// let removeStag = document.querySelector('.removeStag');
-// let refreshStag = document.querySelector('.refreshStag');
+    console.log(modalBg);
+    console.log("salut");
+})
 
+let closeModal = document.querySelector('#closemodal')
 
-// // ajouter
-// ajouteStag.onclick =  function() {
-//     const key = inpKey.value;
-//     const value = inpValue.value;
-
-//     if (key && value) {
-//         localStorage.setItem(key, value);
-//         location.reload();
-//     }
-// }; 
-
-// for (let i = 0; i < localStorage.length; i++) {
-//     const key = localStorage.key(i);
-//     const value = localStorage.getItem(key);
-
-//     // Ma liste
-//     let list = document.createElement('li');
-//     list.innerText = inpValue.value;
-//     list.classList.add('stagiaire');
-//     listStag.appendChild(list);
-//     console.log(localStorage);
-//     listStag.innerHTML += `${value}`;
-//     // bouton de check
-//     let checkBtn = document.createElement('input');
-//     checkBtn.setAttribute('type', 'checkbox')
-//     checkBtn.classList.add('check-btn');
-//     listStag.appendChild(checkBtn);
-//     // bouton de supprimer
-//     let removeBtn = document.createElement('button');
-//     removeBtn.innerHTML = 'remove';
-//     removeBtn.classList.add('remove-btn');
-//     listStag.appendChild(removeBtn);
-//     removeBtn.addEventListener('click', ()=> {
-//         list.remove()
-//     })
-// };
+closeModal.addEventListener('click', function(){
+    modalBg.classList.remove('bg-active')
+})
 
 let liste = document.querySelector('.listStag')
-
-function addStagiaire(a,b,c,key) {
-    let newStag = {
-        id: a,
-        nom: b,
-        count: c,
-    }
-    let myObj = JSON.stringify(newStag)
-    localStorage.setItem(key, myObj)
-    let final = JSON.parse(localStorage.getItem(key))
-    console.log(final);
-    
+function creerElements (x) {
     let li = document.createElement('li')
     li.setAttribute('class', 'elementListe')
     li.innerText = x.nom
@@ -71,17 +28,98 @@ function addStagiaire(a,b,c,key) {
     removeBtn.innerText= 'Remove'
     li.append(check, removeBtn)
     liste.appendChild(li)
+    
+    
+    removeBtn.addEventListener('click', ()=>{
+        let parentBtn = removeBtn.parentElement
+        parentBtn.remove()
+    })
 }
+
+function addStagiaire(a,b,key) {
+    let newStag = {
+        id: a,
+        nom: b,
+    }
+    let convertObj = JSON.stringify(newStag)
+    console.log(convertObj);
+    localStorage.setItem(key, convertObj)
+    console.log(key);
+    var final = JSON.parse(localStorage.getItem(key))
+    console.log(final);
+    creerElements(final)
+}
+// console.log(final);
 
 let input = document.querySelectorAll('input')
 let count = 0
 
-let addBtn = document.querySelector('.ajouteStag').addEventListener('click', (e) => {
+let addBtn = document.querySelector('#addStag').addEventListener('click', (e) => {
     e.preventDefault
     let id = input[0].value
     let nom = input[1].value
+    if (id && nom) {
+        addStagiaire(id,nom,count)
+    }
     count++
-    addStagiaire(id,nom,count)
     input[0].value = ""
     input[1].value = ""
+})
+
+
+// REFRESH 
+window.addEventListener('load', ()=> {
+    let number = parseInt(localStorage.length)
+    compteur(number)
+})
+
+function compteur (x) {
+    return count = x
+}
+
+// API
+// IP ADDRESS/FOURNISSEUR
+let ville = document.querySelector('#city')
+let pays = document.querySelector('#country')
+let adresseIp = document.querySelector('#ip')
+let provider = document.querySelector('#isp')
+let info = document.querySelector('#info')
+let hours = document.querySelector('#hours').innerHTML = Date();
+let modal = document.querySelector('#mod')
+let fermer = document.querySelector('#fermer')
+
+fetch('http://api.ipify.org/?format=json')
+.then(res => res.json())
+.then(res =>{
+    adresseIp.innerHTML = res.ip
+})
+// console.log(Votre adresse ip : ${data.json});
+
+fetch('http://ip-api.com/json/')
+.then(res=>res.json())
+.then(res =>{
+    ville.innerHTML = res.city
+    pays.innerHTML = res.country
+    // adresseIp.innerHTML = res.ip
+    provider.innerHTML = res.isp
+})
+
+// DATE 
+
+let date = new Date();
+console.log(date);
+
+info.addEventListener('click', () => {
+    if (modal.classList.contains('d-none')) {
+        modal.classList.remove('d-none')
+    }
+})
+
+info.addEventListener('click', () => {
+    modal.style.display = "block"
+})
+
+fermer.addEventListener('click', () => {
+    modal.style.display = "none"
+    document.body.style.overflow= null
 })
