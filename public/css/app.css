@@ -15810,6 +15810,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 body {
+  position: relative;
   background-color: #bbcde4;
 }
 
@@ -15829,6 +15830,10 @@ body #localStorage div button {
   border: none;
   border-radius: 4px;
   padding: 5px 15px;
+}
+
+body #localStorage div button:hover {
+  background-color: #c5c7c9;
 }
 
 body #localStorage .modalBg {
@@ -15880,6 +15885,10 @@ body #localStorage .bg-active .modalContenu button {
   padding: 5px 20px;
 }
 
+body #localStorage .bg-active .modalContenu button:hover {
+  background-color: #3a3939;
+}
+
 body #localStorage .bg-active .modalContenu span {
   position: absolute;
   top: 10px;
@@ -15890,6 +15899,10 @@ body #localStorage .bg-active .modalContenu span {
   padding: 0px 5px;
   border-radius: 2px;
   cursor: pointer;
+}
+
+body #localStorage .bg-active .modalContenu span:hover {
+  background-color: #3a3939;
 }
 
 body #localStorage #listStagiaires h4 {
@@ -15904,15 +15917,65 @@ body #localStorage .listCoding {
   padding: 5px 20px;
 }
 
-body #modal #mod {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 700px;
-  height: 600px;
+body #localStorage .listCoding:hover {
+  background-color: #c5c7c9;
+}
+
+body .modal {
   position: fixed;
-  left: 30vw;
-  top: 10vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opcaity: 0;
+}
+
+body .showModal {
+  visibility: visible;
+  opcaity: 1;
+}
+
+body .showModal .mod {
+  background-color: white;
+  border-radius: 5px;
+  width: 500px;
+  height: 300px;
+  position: fixed;
   z-index: 999;
-  display: none;
+  visibility: hidden;
+  opcaity: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+}
+
+body .showModal .mod button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 2px;
+  background-color: black;
+  color: white;
+}
+
+body .showModal .mod button:hover {
+  background-color: #3a3939;
+}
+
+body .showModal .showMod {
+  visibility: visible;
+  opcaity: 1;
+}
+
+body .dropdown {
+  margin-top: 20px;
 }

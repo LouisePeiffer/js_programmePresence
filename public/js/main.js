@@ -1,20 +1,5 @@
 // // // Ciblage
-let ajouter = document.querySelector('.ajouteStag')
-let modalBg = document.querySelector('.modalBg')
-
-ajouter.addEventListener('click', function () {
-    modalBg.classList.add('bg-active')
-
-    console.log(modalBg);
-    console.log("salut");
-})
-
-let closeModal = document.querySelector('#closemodal')
-
-closeModal.addEventListener('click', function(){
-    modalBg.classList.remove('bg-active')
-})
-
+// FONCTION AJOUTER UN STAGIAIRE
 let liste = document.querySelector('.listStag')
 function creerElements (x) {
     let li = document.createElement('li')
@@ -35,7 +20,6 @@ function creerElements (x) {
         parentBtn.remove()
     })
 }
-
 function addStagiaire(a,b,key) {
     let newStag = {
         id: a,
@@ -67,59 +51,72 @@ let addBtn = document.querySelector('#addStag').addEventListener('click', (e) =>
 })
 
 
-// REFRESH 
-window.addEventListener('load', ()=> {
-    let number = parseInt(localStorage.length)
-    compteur(number)
-})
 
-function compteur (x) {
-    return count = x
-}
+// FILTRE
+let btnFilter = document.querySelector('.dropdown')
+let btnAll = document.querySelectorAll('.dropdown-item')[0]
+let btnFilter1 = document.querySelectorAll('.dropdown-item')[1]
+let btnFilter2 = document.querySelectorAll('.dropdown-item')[2]
+let btnFilter3 = document.querySelectorAll('.dropdown-item')[3]
 
-// API
-// IP ADDRESS/FOURNISSEUR
-let ville = document.querySelector('#city')
-let pays = document.querySelector('#country')
-let adresseIp = document.querySelector('#ip')
-let provider = document.querySelector('#isp')
-let info = document.querySelector('#info')
-let hours = document.querySelector('#hours').innerHTML = Date();
-let modal = document.querySelector('#mod')
-let fermer = document.querySelector('#fermer')
-
-fetch('http://api.ipify.org/?format=json')
-.then(res => res.json())
-.then(res =>{
-    adresseIp.innerHTML = res.ip
-})
-// console.log(Votre adresse ip : ${data.json});
-
-fetch('http://ip-api.com/json/')
-.then(res=>res.json())
-.then(res =>{
-    ville.innerHTML = res.city
-    pays.innerHTML = res.country
-    // adresseIp.innerHTML = res.ip
-    provider.innerHTML = res.isp
-})
-
-// DATE 
-
-let date = new Date();
-console.log(date);
-
-info.addEventListener('click', () => {
-    if (modal.classList.contains('d-none')) {
-        modal.classList.remove('d-none')
+btnFilter1.addEventListener('click', ()=> {
+    console.log(localStorage);
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i)
+        let valeur = localStorage.getItem(key)
+        let final = JSON.parse(valeur)
+        let finalId = final.id
+        let finalFinal = finalId.toLowerCase().split(" ").join("")
+        // console.log(finalFinal);
+        let lesLi = Array.from(liste.children)
+        if (finalFinal !== "coding15") {
+            console.log(lesLi[i]);
+            lesLi[i].style.display = "none"
+        } else {
+            lesLi[i].style.display = "block"
+        }
     }
 })
 
-info.addEventListener('click', () => {
-    modal.style.display = "block"
+btnFilter2.addEventListener('click', ()=> {
+    console.log(localStorage);
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i)
+        let valeur = localStorage.getItem(key)
+        let final = JSON.parse(valeur)
+        let finalId = final.id
+        let finalFinal = finalId.toLowerCase().split(" ").join("")
+        // console.log(finalFinal);
+        let lesLi = Array.from(liste.children)
+        if (finalFinal !== "coding16") {
+            console.log(lesLi[i]);
+            lesLi[i].style.display = "none"
+        } else {
+            lesLi[i].style.display = "block"
+        }
+    }
 })
 
-fermer.addEventListener('click', () => {
-    modal.style.display = "none"
-    document.body.style.overflow= null
+btnFilter3.addEventListener('click', ()=> {
+    console.log(localStorage);
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i)
+        let valeur = localStorage.getItem(key)
+        let final = JSON.parse(valeur)
+        let finalId = final.id
+        let finalFinal = finalId.toLowerCase().split(" ").join("")
+        // console.log(finalFinal);
+        let lesLi = Array.from(liste.children)
+        if (finalFinal !== "coding17") {
+            console.log(lesLi[i]);
+            lesLi[i].style.display = "none"
+        } else {
+            lesLi[i].style.display = "block"
+        }
+    }
 })
+
+// btnAll.addEventListener('click', ()=> {
+//     let lesLi = Array.from(liste.children)
+//     lesLi.style.display = "block"
+// })

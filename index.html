@@ -16,6 +16,7 @@
             <button class='removeStag'>Clear Storage</button>
             <button class='refreshStag'>Refresh Page</button>
             <button type="button" class='ajouteStag'>Ajouter des stagiaires</button>
+            <button type="button" id="info">Info</button>
         </div>
 
         <!-- MODAL -->
@@ -28,33 +29,49 @@
                 <span id="closemodal">X</span>
             </div>
         </div>
-
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Codings</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">All</a>
+              <a class="dropdown-item" href="#">Coding 15</a>
+              <a class="dropdown-item" href="#">Coding 16</a>
+              <a class="dropdown-item" href="#">Coding 17</a>
+            </div>
+        </div>
         <div id="listStagiaires">
             <h4>Liste des stagiaires</h4>
             <ul class="listStag">
             </ul>
         </div>
-        <button class="listCoding">Liste par coding</button>
         <hr>
     </section>
 
     <!-- modal 2 -->
-    <section id="modal">
-        <div id="mod">
+    <section class="modal">
+        <div class="mod">
             <h4>Ville : <span id="city">...</span></h4>
             <h4>Pays : <span id="country">...</span></h4>
             <h4>Adresse IP : <span id="ip">...</span></h4>
             <h4>Fournisseur : <span id="isp">...</span></h4>
-            <h4>Date et heure : <span id="hours">...</span></h4>
+            <h4>Date : <span id="date">...</span></h4>
+            <h4>Heure : <span id="hours">...</span></h4>
             <button id="fermer">x</button>
         </div>
-        <button type="button" id="info">Info</button>
     </section>
+
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
 
     <!-- JS -->
     <script src="./public/js/main.js"></script>
-    <!-- <script src="./public/js/api.js"></script> -->
+    <script src="./public/js/api.js"></script>
+    <script src="./public/js/modal.js"></script>
+    <script src="./public/js/refresh.js"></script>
+    
     <!-- JQUERY --> 
     <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <!-- SCRIPT BOOTSTRAP --> 
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script> 
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script> 
 </body>
 </html>
